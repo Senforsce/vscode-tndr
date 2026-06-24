@@ -14,7 +14,7 @@ import { getFromGlobalState, updateGlobalState } from './stateUtils';
 
 /** getGoConfig is declared as an exported const rather than a function, so it can be stubbbed in testing. */
 export const getGoConfig = (uri?: vscode.Uri) => {
-	return getConfig('go', uri);
+	return getConfig('t0', uri);
 };
 
 /** getGoplsConfig returns the user's gopls configuration. */
@@ -50,9 +50,9 @@ export class ExtensionInfo {
 		this.version = version?.format();
 		this.appName = vscode.env.appName;
 
-		// golang.go prerelease: minor version is an odd number, or has the "-dev" suffix.
+		// senforsce.tndr prerelease: minor version is an odd number, or has the "-dev" suffix.
 		this.isPreview =
-			extensionId === 'golang.go' && !!version
+			extensionId === 'senforsce.tndr' && !!version
 				? version.minor % 2 === 1 || version.toString().endsWith('-dev')
 				: false;
 		this.isInCloudIDE =

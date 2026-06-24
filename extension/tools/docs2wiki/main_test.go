@@ -5,7 +5,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -37,7 +36,7 @@ func TestRewriteLinks(t *testing.T) {
 			}
 			// rewriteLinks overwrites the original file,
 			// so reread the content for comparison.
-			got, err := ioutil.ReadFile(filepath.Join(dir, tt.filename))
+			got, err := os.ReadFile(filepath.Join(dir, tt.filename))
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -51,14 +50,14 @@ func TestRewriteLinks(t *testing.T) {
 // prepareTestData writes a file in a temp directory and returns the temp
 // directory path.
 func prepareTestData(t *testing.T, file, content string) (dir string) {
-	dir, err := ioutil.TempDir("", "docs2wiki_test")
+	dir, err := os.MkdirTemp("", "docs2wiki_test")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	fname := filepath.Join(dir, filepath.FromSlash(file))
 	os.MkdirAll(filepath.Dir(fname), 0755) // create intermediate dirs
-	if err := ioutil.WriteFile(fname, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(fname, []byte(content), 0644); err != nil {
 		os.RemoveAll(dir)
 		t.Fatal(err)
 	}
@@ -102,7 +101,7 @@ func TestGenFooter(t *testing.T) {
 		}
 		// rewriteLinks overwrites the original file,
 		// so reread the content for comparison.
-		got, err := ioutil.ReadFile(filepath.Join(dir, tt.filename))
+		got, err := os.ReadFile(filepath.Join(dir, tt.filename))
 		if err != nil {
 			t.Fatal(err)
 		}

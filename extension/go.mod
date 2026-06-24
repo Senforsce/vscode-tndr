@@ -1,9 +1,9 @@
-module github.com/golang/vscode-go/extension
+module github.com/senforsce/vscode-tndr/extension
 
-go 1.23.1
+go 1.26.2
 
 require (
-	github.com/golang/vscode-go v0.0.0-00010101000000-000000000000
+	github.com/senforsce/vscode-tndr v0.0.0-00010101000000-000000000000
 	github.com/google/go-cmp v0.6.0
 )
 
@@ -17,4 +17,4 @@ require (
 
 // For development, use the vscgo in the same repo.
 // This go.mod file is excluded when packaging .vsix.
-replace github.com/golang/vscode-go => ../
+replace github.com/senforsce/vscode-tndr => ../

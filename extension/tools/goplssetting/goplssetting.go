@@ -8,7 +8,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"maps"
 	"os"
@@ -31,7 +30,7 @@ func Generate(inputFile string, skipCleanup bool) ([]byte, error) {
 		return nil, fmt.Errorf("missing `jq`: %w", err)
 	}
 
-	workDir, err := ioutil.TempDir("", "goplssettings")
+	workDir, err := os.MkdirTemp("", "goplssettings")
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +52,7 @@ func Generate(inputFile string, skipCleanup bool) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	f, err := ioutil.TempFile(workDir, "gopls.settings")
+	f, err := os.CreateTemp(workDir, "gopls.settings")
 	if err != nil {
 		return nil, err
 	}

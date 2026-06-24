@@ -48,7 +48,7 @@ var (
 var (
 	cmdBuildVSCGO = &command{
 		usage: "build-vscgo",
-		short: "build github.com/golang/vscode-go/vscgo@TAG_NAME",
+		short: "build github.com/senforsce/vscode-tndr/vscgo@TAG_NAME",
 		long:  "build-vscgo command cross-compiles the vscgo binaries and produces vscgo.zip in -out dir",
 		run:   runBuildVSCGO,
 	}
@@ -399,8 +399,8 @@ func buildPackage(version, tagName string, isPrerelease bool, output string) {
 	// build the package.
 	args := []string{"vsce", "package",
 		"-o", output,
-		"--baseContentUrl", "https://github.com/golang/vscode-go/raw/" + tagName,
-		"--baseImagesUrl", "https://github.com/golang/vscode-go/raw/" + tagName,
+		"--baseContentUrl", "https://github.com/senforsce/vscode-tndr/raw/" + tagName,
+		"--baseImagesUrl", "https://github.com/senforsce/vscode-tndr/raw/" + tagName,
 	}
 	if isPrerelease || strings.Contains(tagName, "-rc.") {
 		// Do not update of the version field in packages.json for prerelease or rc.
@@ -493,7 +493,7 @@ func buildVSCGO(tagName, outdir string) {
 			base += ".exe"
 		}
 		outfile := filepath.Join(tmpDir, target.goos+"_"+target.goarch, base)
-		if err := goinstall(outfile, target.goos, target.goarch, "github.com/golang/vscode-go/vscgo@"+tagName); err != nil {
+		if err := goinstall(outfile, target.goos, target.goarch, "github.com/senforsce/vscode-tndr/vscgo@"+tagName); err != nil {
 			fatalf("failed to build %s/%s: %v", target.goos, target.goarch, err)
 		}
 	}

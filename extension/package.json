@@ -1,11 +1,11 @@
 {
-  "name": "go",
-  "displayName": "Go",
-  "version": "0.56.0-dev",
-  "publisher": "golang",
-  "description": "Rich Go language support for Visual Studio Code",
+  "name": "vscode-tndr",
+  "displayName": "Tndr(t0)",
+  "version": "0.0.0-dev",
+  "publisher": "senforsce",
+  "description": "Rich Go language support for t0 on Visual Studio Code",
   "author": {
-    "name": "Go Team at Google"
+    "name": "Abdoul Sy at Senforsce"
   },
   "license": "MIT",
   "icon": "media/go-logo-blue.png",
@@ -15,19 +15,20 @@
     "Linters",
     "Debuggers",
     "Formatters",
+    "Visualization",
     "Testing"
   ],
   "galleryBanner": {
-    "color": "#F2F2F2",
-    "theme": "light"
+    "color": "#0D0D0D",
+    "theme": "dark"
   },
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/golang/vscode-go"
+    "url": "https://github.com/Senforsce/vscode-tndr"
   },
   "bugs": {
-    "url": "https://github.com/golang/vscode-go/issues"
+    "url": "https://github.com/Senforsce/vscode-tndr/issues"
   },
   "keywords": [
     "multi-root ready",
@@ -36,7 +37,7 @@
   ],
   "scripts": {
     "clean": "rm -rf ./dist/* && rm -rf ./out/* && rm -rf ./bin/* && rm *.vsix",
-    "package": "cp ../README.md ./README.md && npx vsce package --baseContentUrl https://github.com/golang/vscode-go/raw/HEAD --baseImagesUrl https://github.com/golang/vscode-go/raw/HEAD",
+    "package": "cp ../README.md ./README.md && npx vsce package --baseContentUrl https://github.com/Senforsce/vscode-tndr/raw/HEAD --baseImagesUrl https://github.com/Senforsce/vscode-tndr/raw/HEAD",
     "vscode:prepublish": "npm run compile",
     "bundle": "esbuild src/goMain.ts debugAdapter=src/debugAdapter/goDebug.ts --bundle --outdir=dist --external:vscode --format=cjs --platform=node",
     "bundle-dev": "npm run bundle -- --sourcemap",
@@ -95,6 +96,9 @@
     "node": ">=16.14.2"
   },
   "activationEvents": [
+    "onLanguage:tndr",
+    "onLanguage:t0",
+    "onLanguage:t1",
     "onLanguage:go",
     "onLanguage:go.sum",
     "onLanguage:gotmpl",
@@ -112,6 +116,15 @@
   },
   "contributes": {
     "languages": [
+      {
+        "id": "t0",
+        "extensions": [
+          ".t0"
+        ],
+        "aliases": [
+          "Tndr", "T0"
+        ]
+      },
       {
         "id": "go",
         "extensions": [
@@ -168,7 +181,17 @@
         "aliases": [
           "Go Template File"
         ]
+      },
+      {
+        "id": "t1",
+        "extensions": [
+          ".t1"
+        ],
+        "aliases": [
+          "Tndr (t1) Template File"
+        ]
       }
+
     ],
     "grammars": [
       {
@@ -195,6 +218,14 @@
     ],
     "configurationDefaults": {
       "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        }
+      },
+      "[t0]": {
         "editor.insertSpaces": false,
         "editor.formatOnSave": true,
         "editor.formatOnSaveMode": "file",
@@ -552,6 +583,9 @@
     "breakpoints": [
       {
         "language": "go"
+      },
+      {
+        "language": "t0"
       }
     ],
     "debuggers": [
@@ -1177,14 +1211,14 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Go",
+      "title": "t0",
       "properties": {
-        "go.showWelcome": {
+        "t0.showWelcome": {
           "type": "boolean",
           "default": true,
           "description": "Specifies whether to show the Welcome experience on first install"
         },
-        "go.buildOnSave": {
+        "t0.buildOnSave": {
           "type": "string",
           "enum": [
             "package",
@@ -1194,9 +1228,9 @@
           "default": "package",
           "description": "Compiles code on file save using 'go build' or 'go test -c'. Not applicable when using the language server.",
           "scope": "resource",
-          "markdownDeprecationMessage": "Enable the Go language server (`#go.useLanguageServer#`) to diagnose compile errors."
+          "markdownDeprecationMessage": "Enable the Go language server (`#t0.useLanguageServer#`) to diagnose compile errors."
         },
-        "go.buildFlags": {
+        "t0.buildFlags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1205,13 +1239,13 @@
           "description": "Flags to `go build`/`go test` used during build-on-save or running tests. (e.g. [\"-ldflags='-s'\"]) This is propagated to the language server if `gopls.build.buildFlags` is not specified.",
           "scope": "resource"
         },
-        "go.buildTags": {
+        "t0.buildTags": {
           "type": "string",
           "default": "",
-          "description": "The Go build tags to use for all commands, that support a `-tags '...'` argument. When running tests, go.testTags will be used instead if it was set. This is propagated to the language server if `gopls.build.buildFlags` is not specified.",
+          "description": "The Go build tags to use for all commands, that support a `-tags '...'` argument. When running tests, t0.testTags will be used instead if it was set. This is propagated to the language server if `gopls.build.buildFlags` is not specified.",
           "scope": "resource"
         },
-        "go.testTags": {
+        "t0.testTags": {
           "type": [
             "string",
             "null"
@@ -1220,19 +1254,19 @@
           "description": "The Go build tags to use for when running tests. If null, then buildTags will be used.",
           "scope": "resource"
         },
-        "go.disableConcurrentTests": {
+        "t0.disableConcurrentTests": {
           "type": "boolean",
           "default": false,
           "description": "If true, tests will not run concurrently. When a new test run is started, the previous will be cancelled.",
           "scope": "resource"
         },
-        "go.installDependenciesWhenBuilding": {
+        "t0.installDependenciesWhenBuilding": {
           "type": "boolean",
           "default": false,
           "description": "If true, then `-i` flag will be passed to `go build` everytime the code is compiled. Since Go 1.10, setting this may be unnecessary unless you are in GOPATH mode and do not use the language server.",
           "scope": "resource"
         },
-        "go.lintOnSave": {
+        "t0.lintOnSave": {
           "type": "string",
           "enum": [
             "file",
@@ -1250,7 +1284,7 @@
           "description": "Lints code on file save using the configured Lint tool. Options are 'file', 'package', 'workspace' or 'off'.",
           "scope": "resource"
         },
-        "go.lintTool": {
+        "t0.lintTool": {
           "type": "string",
           "description": "Specifies an additional client-side linting tool that should be run by the Go extension. By default (unset), no additional linter is run. This feature is additional to diagnostics reported by the language server, gopls. Since Gopls incorporates the entire staticcheck analyzer suite, it is typically unnecessary to run the staticcheck tool as well. To configure gopls's linting, see the 'gopls.ui.diagnostic' settings.",
           "scope": "resource",
@@ -1269,7 +1303,7 @@
             "Run `revive`."
           ]
         },
-        "go.lintFlags": {
+        "t0.lintFlags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1278,7 +1312,7 @@
           "description": "Flags to pass to Lint tool (e.g. [\"-min_confidence=.8\"])",
           "scope": "resource"
         },
-        "go.vetOnSave": {
+        "t0.vetOnSave": {
           "type": "string",
           "enum": [
             "package",
@@ -1294,7 +1328,7 @@
           "description": "Vets code on file save using 'go tool vet'. Not applicable when using the language server's diagnostics.",
           "scope": "resource"
         },
-        "go.vetFlags": {
+        "t0.vetFlags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1303,7 +1337,7 @@
           "description": "Flags to pass to `go tool vet` (e.g. [\"-all\", \"-shadow\"]). Not applicable when using the language server's diagnostics.",
           "scope": "resource"
         },
-        "go.formatTool": {
+        "t0.formatTool": {
           "type": "string",
           "default": "default",
           "markdownDescription": "Specifies the tool for formatting Go code. The default is `default`, which uses the language server `gopls` as formatting provider. To configure gopls's formatting, see the 'gopls.formatting' settings. When a specific tool (e.g., `gofmt`, `goimports`) is selected, the extension will run it instead.",
@@ -1318,14 +1352,14 @@
           ],
           "markdownEnumDescriptions": [
             "Formatting is performed by the language server, gopls. (recommended)",
-            "Formats using `gofmt`, the standard Go formatter. See https://pkg.go.dev/cmd/gofmt.",
-            "Formats using `goimports`, which organizes imports and applies `gofmt`. See https://pkg.go.dev/golang.org/x/tools/cmd/goimports.",
+            "Formats using `gofmt`, the standard Go formatter. See https://pkg.t0.dev/cmd/gofmt.",
+            "Formats using `goimports`, which organizes imports and applies `gofmt`. See https://pkg.t0.dev/golang.org/x/tools/cmd/goimports.",
             "Formats using `goformat`, a configurable version of `gofmt`. See https://github.com/mbenkmann/goformat. (Deprecated due to lack of generics support)",
             "Formats using `gofumpt`, a stricter version of `gofmt`. See https://github.com/mvdan/gofumpt. Note: `gopls` can also be configured to use `gofumpt` via the `#gopls.formatting.gofumpt#` setting.",
-            "Formats using a custom tool. The tool's path must be specified in the `#go.alternateTools#` setting under the `customFormatter` key."
+            "Formats using a custom tool. The tool's path must be specified in the `#t0.alternateTools#` setting under the `customFormatter` key."
           ]
         },
-        "go.formatFlags": {
+        "t0.formatFlags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1334,22 +1368,22 @@
           "description": "Flags to pass to format tool (e.g. [\"-s\"]). Not applicable when using the language server.",
           "scope": "resource"
         },
-        "go.inferGopath": {
+        "t0.inferGopath": {
           "type": "boolean",
           "default": false,
           "description": "Infer GOPATH from the workspace root. This is ignored when using Go Modules.",
           "scope": "resource"
         },
-        "go.gopath": {
+        "t0.gopath": {
           "type": [
             "string",
             "null"
           ],
           "default": null,
-          "description": "Specify GOPATH here to override the one that is set as environment variable. The inferred GOPATH from workspace root overrides this, if go.inferGopath is set to true.",
+          "description": "Specify GOPATH here to override the one that is set as environment variable. The inferred GOPATH from workspace root overrides this, if t0.inferGopath is set to true.",
           "scope": "machine-overridable"
         },
-        "go.toolsGopath": {
+        "t0.toolsGopath": {
           "type": [
             "string",
             "null"
@@ -1358,7 +1392,7 @@
           "description": "Location to install the Go tools that the extension depends on if you don't want them in your GOPATH.",
           "scope": "machine-overridable"
         },
-        "go.goroot": {
+        "t0.goroot": {
           "type": [
             "string",
             "null"
@@ -1367,34 +1401,34 @@
           "description": "Specifies the GOROOT to use when no environment variable is set.",
           "scope": "machine-overridable"
         },
-        "go.testOnSave": {
+        "t0.testOnSave": {
           "type": "boolean",
           "default": false,
           "description": "Run 'go test' on save for current package. It is not advised to set this to `true` when you have Auto Save enabled.",
           "scope": "resource"
         },
-        "go.coverOnSave": {
+        "t0.coverOnSave": {
           "type": "boolean",
           "default": false,
           "description": "If true, runs 'go test -coverprofile' on save and shows test coverage.",
           "scope": "resource"
         },
-        "go.coverOnTestPackage": {
+        "t0.coverOnTestPackage": {
           "type": "boolean",
           "default": true,
           "description": "If true, shows test coverage when Go: Test Package command is run."
         },
-        "go.coverOnSingleTest": {
+        "t0.coverOnSingleTest": {
           "type": "boolean",
           "default": false,
           "description": "If true, shows test coverage when Go: Test Function at cursor command is run."
         },
-        "go.coverOnSingleTestFile": {
+        "t0.coverOnSingleTestFile": {
           "type": "boolean",
           "default": false,
           "description": "If true, shows test coverage when Go: Test Single File command is run."
         },
-        "go.coverMode": {
+        "t0.coverMode": {
           "type": "string",
           "enum": [
             "default",
@@ -1406,13 +1440,13 @@
           "description": "When generating code coverage, the value for -covermode. 'default' is the default value chosen by the 'go test' command.",
           "scope": "resource"
         },
-        "go.coverShowCounts": {
+        "t0.coverShowCounts": {
           "type": "boolean",
           "default": false,
           "description": "When generating code coverage, should counts be shown as --374--",
           "scope": "resource"
         },
-        "go.coverageOptions": {
+        "t0.coverageOptions": {
           "type": "string",
           "enum": [
             "showCoveredCodeOnly",
@@ -1423,7 +1457,7 @@
           "description": "Use these options to control whether only covered or only uncovered code or both should be highlighted after running test coverage",
           "scope": "resource"
         },
-        "go.coverageDecorator": {
+        "t0.coverageDecorator": {
           "type": "object",
           "properties": {
             "type": {
@@ -1499,25 +1533,25 @@
           "description": "This option lets you choose the way to display code coverage. Choose either to highlight the complete line or to show a decorator in the gutter. You can customize the colors and borders for the former and the style for the latter.",
           "scope": "resource"
         },
-        "go.testTimeout": {
+        "t0.testTimeout": {
           "type": "string",
           "default": "30s",
           "description": "Specifies the timeout for go test in ParseDuration format.",
           "scope": "resource"
         },
-        "go.testEnvVars": {
+        "t0.testEnvVars": {
           "type": "object",
           "default": {},
           "description": "Environment variables that will be passed to the process that runs the Go tests",
           "scope": "resource"
         },
-        "go.testEnvFile": {
+        "t0.testEnvFile": {
           "type": "string",
           "default": null,
           "description": "Absolute path to a file containing environment variables definitions. File contents should be of the form key=value.",
           "scope": "resource"
         },
-        "go.testFlags": {
+        "t0.testFlags": {
           "type": [
             "array",
             "null"
@@ -1529,13 +1563,13 @@
           "description": "Flags to pass to `go test`. If null, then buildFlags will be used. This is not propagated to the language server.",
           "scope": "resource"
         },
-        "go.testExplorer.enable": {
+        "t0.testExplorer.enable": {
           "type": "boolean",
           "default": true,
           "scope": "window",
           "description": "Enable the Go test explorer"
         },
-        "go.testExplorer.packageDisplayMode": {
+        "t0.testExplorer.packageDisplayMode": {
           "type": "string",
           "enum": [
             "flat",
@@ -1545,31 +1579,31 @@
           "description": "Present packages in the test explorer flat or nested.",
           "scope": "resource"
         },
-        "go.testExplorer.alwaysRunBenchmarks": {
+        "t0.testExplorer.alwaysRunBenchmarks": {
           "type": "boolean",
           "default": false,
           "description": "Run benchmarks when running all tests in a file or folder.",
           "scope": "resource"
         },
-        "go.testExplorer.concatenateMessages": {
+        "t0.testExplorer.concatenateMessages": {
           "type": "boolean",
           "default": true,
           "description": "Concatenate all test log messages for a given location into a single message.",
           "scope": "resource"
         },
-        "go.testExplorer.showDynamicSubtestsInEditor": {
+        "t0.testExplorer.showDynamicSubtestsInEditor": {
           "type": "boolean",
           "default": false,
           "description": "Set the source location of dynamically discovered subtests to the location of the containing function. As a result, dynamically discovered subtests will be added to the gutter test widget of the containing function.",
           "scope": "resource"
         },
-        "go.testExplorer.showOutput": {
+        "t0.testExplorer.showOutput": {
           "type": "boolean",
           "default": true,
           "description": "Open the test output terminal when a test run is started.",
           "scope": "window"
         },
-        "go.experiments": {
+        "t0.experiments": {
           "type": "object",
           "default": {
             "testExplorer": true
@@ -1583,7 +1617,7 @@
             }
           }
         },
-        "go.generateTestsFlags": {
+        "t0.generateTestsFlags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1592,23 +1626,23 @@
           "description": "Additional command line flags to pass to `gotests` for generating tests.",
           "scope": "resource"
         },
-        "go.toolsEnvVars": {
+        "t0.toolsEnvVars": {
           "type": "object",
           "default": {},
-          "description": "Environment variables that will be passed to the tools that run the Go tools (e.g. CGO_CFLAGS) and debuggee process launched by Delve. Format as string key:value pairs. When debugging, merged with `envFile` and `env` values with precedence `env` > `envFile` > `go.toolsEnvVars`.",
+          "description": "Environment variables that will be passed to the tools that run the Go tools (e.g. CGO_CFLAGS) and debuggee process launched by Delve. Format as string key:value pairs. When debugging, merged with `envFile` and `env` values with precedence `env` > `envFile` > `t0.toolsEnvVars`.",
           "scope": "resource"
         },
-        "go.useLanguageServer": {
+        "t0.useLanguageServer": {
           "type": "boolean",
           "default": true,
           "description": "Enable intellisense, code navigation, refactoring, formatting & diagnostics for Go. The features are powered by the Go language server \"gopls\"."
         },
-        "go.languageServerFlags": {
+        "t0.languageServerFlags": {
           "type": "array",
           "default": [],
           "description": "Flags like -rpc.trace and -logfile to be used while running the language server."
         },
-        "go.trace.server": {
+        "t0.trace.server": {
           "type": "string",
           "enum": [
             "off",
@@ -1618,18 +1652,18 @@
           "default": "off",
           "description": "Trace the communication between VS Code and the Go language server."
         },
-        "go.logging.level": {
+        "t0.logging.level": {
           "type": "string",
           "deprecationMessage": "This setting is deprecated. Use 'Developer: Set Log Level...' command to control logging level instead.",
           "scope": "machine-overridable"
         },
-        "go.toolsManagement.go": {
+        "t0.toolsManagement.go": {
           "type": "string",
           "default": "",
           "description": "The path to the `go` binary used to install the Go tools. If it's empty, the same `go` binary chosen for the project will be used for tool installation.",
           "scope": "machine-overridable"
         },
-        "go.toolsManagement.checkForUpdates": {
+        "t0.toolsManagement.checkForUpdates": {
           "type": "string",
           "default": "proxy",
           "enum": [
@@ -1644,13 +1678,13 @@
           ],
           "markdownDescription": "Specify whether to prompt about new versions of Go and the Go tools (currently, only `gopls`) the extension depends on"
         },
-        "go.toolsManagement.autoUpdate": {
+        "t0.toolsManagement.autoUpdate": {
           "type": "boolean",
           "default": false,
           "description": "Automatically update the tools used by the extension, without prompting the user.",
           "scope": "resource"
         },
-        "go.enableCodeLens": {
+        "t0.enableCodeLens": {
           "type": "object",
           "properties": {
             "runtest": {
@@ -1666,7 +1700,7 @@
           "description": "Feature level setting to enable/disable code lens for references and run/debug tests",
           "scope": "resource"
         },
-        "go.addTags": {
+        "t0.addTags": {
           "type": "object",
           "properties": {
             "promptForTags": {
@@ -1713,7 +1747,7 @@
           "description": "Tags and options configured here will be used by the Add Tags command to add tags to struct fields. If promptForTags is true, then user will be prompted for tags and options. By default, json tags are added.",
           "scope": "resource"
         },
-        "go.removeTags": {
+        "t0.removeTags": {
           "type": "object",
           "properties": {
             "promptForTags": {
@@ -1741,7 +1775,7 @@
           "description": "Tags and options configured here will be used by the Remove Tags command to remove tags to struct fields. If promptForTags is true, then user will be prompted for tags and options. By default, all tags and options will be removed.",
           "scope": "resource"
         },
-        "go.playground": {
+        "t0.playground": {
           "type": "object",
           "properties": {
             "openbrowser": {
@@ -1768,12 +1802,12 @@
             "run": true
           }
         },
-        "go.survey.prompt": {
+        "t0.survey.prompt": {
           "type": "boolean",
           "default": true,
           "description": "Prompt for surveys, including the gopls survey and the Go developer survey."
         },
-        "go.editorContextMenuCommands": {
+        "t0.editorContextMenuCommands": {
           "type": "object",
           "properties": {
             "toggleTestFile": {
@@ -1879,7 +1913,7 @@
           "description": "Experimental Feature: Enable/Disable entries from the context menu in the editor.",
           "scope": "resource"
         },
-        "go.delveConfig": {
+        "t0.delveConfig": {
           "type": "object",
           "properties": {
             "dlvLoadConfig": {
@@ -2004,7 +2038,7 @@
           "description": "Delve settings that applies to all debugging sessions. Debug configuration in the launch.json file will override these values.",
           "scope": "resource"
         },
-        "go.alternateTools": {
+        "t0.alternateTools": {
           "type": "object",
           "default": {},
           "description": "Alternate tools or alternate paths for the same tools used by the Go extension. Provide either absolute path or the name of the binary in GOPATH/bin, GOROOT/bin or PATH. Useful when you want to use wrapper script for the Go tools.",
@@ -2028,18 +2062,18 @@
             "customFormatter": {
               "type": "string",
               "default": "",
-              "markdownDescription": "Custom formatter to use instead of the language server. This should be used with the `custom` option in `#go.formatTool#`."
+              "markdownDescription": "Custom formatter to use instead of the language server. This should be used with the `custom` option in `#t0.formatTool#`."
             }
           },
           "additionalProperties": true
         },
-        "go.tasks.provideDefault": {
+        "t0.tasks.provideDefault": {
           "default": true,
           "description": "enable the default go build/test task provider.",
           "scope": "window",
           "type": "boolean"
         },
-        "go.terminal.activateEnvironment": {
+        "t0.terminal.activateEnvironment": {
           "default": true,
           "description": "Apply the Go & PATH environment variables used by the extension to all integrated terminals.",
           "scope": "resource",
@@ -3616,17 +3650,17 @@
             },
             "ui.noSemanticNumber": {
               "type": "boolean",
-              "markdownDescription": "(Experimental) noSemanticNumber turns off the sending of the semantic token 'number'\n\nDeprecated: Use SemanticTokenTypes[\"number\"] = false instead. See\ngolang/vscode-go#3632.\n",
+              "markdownDescription": "(Experimental) noSemanticNumber turns off the sending of the semantic token 'number'\n\nDeprecated: Use SemanticTokenTypes[\"number\"] = false instead. See\nSenforsce/vscode-tndr#3632.\n",
               "default": false,
               "scope": "resource",
-              "deprecationMessage": "use SemanticTokenTypes[\"number\"] = false instead. See\ngolang/vscode-go#3632.\n"
+              "deprecationMessage": "use SemanticTokenTypes[\"number\"] = false instead. See\nSenforsce/vscode-tndr#3632.\n"
             },
             "ui.noSemanticString": {
               "type": "boolean",
-              "markdownDescription": "(Experimental) noSemanticString turns off the sending of the semantic token 'string'\n\nDeprecated: Use SemanticTokenTypes[\"string\"] = false instead. See\ngolang/vscode-go#3632\n",
+              "markdownDescription": "(Experimental) noSemanticString turns off the sending of the semantic token 'string'\n\nDeprecated: Use SemanticTokenTypes[\"string\"] = false instead. See\nSenforsce/vscode-tndr#3632\n",
               "default": false,
               "scope": "resource",
-              "deprecationMessage": "use SemanticTokenTypes[\"string\"] = false instead. See\ngolang/vscode-go#3632\n"
+              "deprecationMessage": "use SemanticTokenTypes[\"string\"] = false instead. See\nSenforsce/vscode-tndr#3632\n"
             },
             "ui.renameMovesSubpackages": {
               "type": "boolean",

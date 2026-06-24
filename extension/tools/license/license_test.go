@@ -26,18 +26,18 @@ func TestLicense(t *testing.T) {
 	if testing.Short() {
 		t.Skip("TestLicense is skipped in short test mode")
 	}
-	extensionModuleRoot, err := moduleRoot("github.com/golang/vscode-go/extension")
+	extensionModuleRoot, err := moduleRoot("github.com/senforsce/vscode-tndr/extension")
 	if err != nil {
 		t.Fatal(err)
 	}
-	vscgoModuleRoot, err := moduleRoot("github.com/golang/vscode-go")
+	vscgoModuleRoot, err := moduleRoot("github.com/senforsce/vscode-tndr")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	// Check package.json is present in the extensionModuleRoot.
 	if _, err := os.Stat(filepath.Join(extensionModuleRoot, "package.json")); err != nil {
-		t.Fatalf("failed to find package.json in the github.com/golang/vscode-go/extension module root: %v", err)
+		t.Fatalf("failed to find package.json in the github.com/senforsce/vscode-tndr/extension module root: %v", err)
 	}
 
 	// Checks below require to run tools (jsgl and yarn) using `npx`.
@@ -77,7 +77,7 @@ func TestLicense(t *testing.T) {
 
 func generateLicense(vscgoModuleRoot, extensionModuleRoot, npx string) (_ []byte, err error) {
 	// Extension's LICENSE file (extension/LICENSE) should contain
-	//  - the vscode-go extension's own license (as in github.com/golang/vscode-go/LICENSE), and
+	//  - the vscode-go extension's own license (as in github.com/senforsce/vscode-tndr/LICENSE), and
 	//  - the compiled license notices from its dependencies (yarn licenses generate-disclaimer --prod)
 
 	vscgoLICENSE, err := os.ReadFile(filepath.Join(vscgoModuleRoot, "LICENSE"))

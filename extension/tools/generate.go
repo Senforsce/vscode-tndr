@@ -20,7 +20,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -28,7 +27,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/golang/vscode-go/extension/tools/goplssetting"
+	"github.com/senforsce/vscode-tndr/extension/tools/goplssetting"
 )
 
 var (
@@ -47,7 +46,7 @@ func checkAndWrite(filename string, oldContent, newContent []byte) {
 
 	// Either write out new contents or report an error (if in CI).
 	if *writeFlag {
-		if err := ioutil.WriteFile(filename, newContent, 0644); err != nil {
+		if err := os.WriteFile(filename, newContent, 0644); err != nil {
 			log.Fatal(err)
 		}
 		fmt.Printf("updated %s\n", filename)
@@ -77,7 +76,7 @@ type Command struct {
 }
 
 type Property struct {
-	name string `json:"name,omitempty"` // Set by us.
+	name string // unexported // Set by us.
 
 	// Below are defined in package.json
 	Properties                 map[string]*Property `json:"properties,omitempty"`
@@ -126,7 +125,7 @@ func main() {
 	packageJSONFile := filepath.Join(dir, "package.json")
 
 	// Find the package.json file.
-	data, err := ioutil.ReadFile(packageJSONFile)
+	data, err := os.ReadFile(packageJSONFile)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -145,7 +144,7 @@ func main() {
 	}
 
 	rewrite := func(filename string, toAdd []byte) {
-		oldContent, err := ioutil.ReadFile(filename)
+		oldContent, err := os.ReadFile(filename)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -255,7 +254,7 @@ func main() {
 	allToolsFile := filepath.Join(dir, "tools", "allTools.ts.in")
 
 	// Find the package.json file.
-	data, err = ioutil.ReadFile(allToolsFile)
+	data, err = os.ReadFile(allToolsFile)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -570,14 +569,14 @@ func updateGoplsSettings(oldData []byte, packageJSONFile string, debug bool) (ne
 		os.Exit(1) // causes CI to break.
 	}
 
-	if err := ioutil.WriteFile(packageJSONFile, newData, 0644); err != nil {
+	if err := os.WriteFile(packageJSONFile, newData, 0644); err != nil {
 		return nil, err
 	}
 	return newData, nil
 }
 
 func rewriteDebugDoc(filename string, toAdd []byte) {
-	oldContent, err := ioutil.ReadFile(filename)
+	oldContent, err := os.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
 	}

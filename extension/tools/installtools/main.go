@@ -65,7 +65,7 @@ func main() {
 	if err != nil {
 		exitf("failed to find go version: %v", err)
 	}
-	if ver < 21 {
+	if ver < 25 {
 		exitf("unsupported go version: 1.%v", ver)
 	}
 	fmt.Printf("installing tools for go1.%d...\n", ver)

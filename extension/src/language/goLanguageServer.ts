@@ -420,7 +420,7 @@ export async function buildLanguageClient(
 
 	// cfg is captured by closures for later use during error report.
 	const c = new GoLanguageClient(
-		'go', // id
+		't0', // id
 		cfg.serverName, // name e.g. gopls
 		serverOption as ServerOptions,
 		{
@@ -744,7 +744,7 @@ export async function buildLanguageClient(
 						}
 					}
 					const paramHints = vscode.workspace.getConfiguration('editor.parameterHints', {
-						languageId: 'go',
+						languageId: 't0',
 						uri: document.uri
 					});
 					// If the user has parameterHints (signature help) enabled,

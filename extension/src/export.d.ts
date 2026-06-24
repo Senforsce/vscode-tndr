@@ -15,7 +15,7 @@ export interface CommandInvocation {
  *
  * @example
  * const Go = await vscode.extensions
- *     .getExtension<ExtensionAPI>('golang.go')
+ *     .getExtension<ExtensionAPI>('senforsce.tndr')
  *     .then(x => x.activate());
  *
  * console.log(`Go extension is a ${Go.isPreview ? 'preview' : 'release'} version`);

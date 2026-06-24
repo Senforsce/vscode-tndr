@@ -14,7 +14,6 @@ import (
 	"flag"
 	"fmt"
 	"io/fs"
-	"io/ioutil"
 	"net/url"
 	"os"
 	"os/exec"
@@ -34,7 +33,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	genFooter := footerGenerator("https://github.com/golang/vscode-go/edit/master/docs/")
+	genFooter := footerGenerator("https://github.com/senforsce/vscode-tndr/edit/master/docs/")
 	if err := rewriteLinks(flag.Arg(0), genFooter, *writeFlag); err != nil {
 		errorf("failed to rewrite links: %v", err)
 		os.Exit(1)
@@ -56,7 +55,7 @@ func rewriteLinks(dir string, genFooter func(srcPath string) []byte, overwrite b
 
 		errorf("processing %v... %v", name, path)
 
-		data, err := ioutil.ReadFile(path)
+		data, err := os.ReadFile(path)
 		if err != nil {
 			return fmt.Errorf("failed to read file %v: %w", name, err)
 		}
@@ -67,7 +66,7 @@ func rewriteLinks(dir string, genFooter func(srcPath string) []byte, overwrite b
 			converted = append(converted, genFooter(filepath.ToSlash(relPath))...)
 		}
 		if overwrite {
-			return ioutil.WriteFile(path, converted, 0644)
+			return os.WriteFile(path, converted, 0644)
 		}
 		tmp, err := writeToTempFile(converted)
 		if err != nil {
@@ -89,7 +88,7 @@ func diff(f1, f2 string) {
 }
 
 func writeToTempFile(content []byte) (filename string, err error) {
-	dst, err := ioutil.TempFile("", "tmp")
+	dst, err := os.CreateTemp("", "tmp")
 	if err != nil {
 		return "", fmt.Errorf("failed to write to a temporary file for diff: %v", err)
 	}

@@ -1,9 +1,10 @@
-vscode-go
+vscode-tndr
 
 The MIT License (MIT)
 
 Original Work Copyright (c) 2015-2020 Microsoft Corporation
-Current Work and Modifications Copyright (c) 2020-present The Go Authors
+Previous Work and Modifications Copyright (c) 2020-present The Go Authors
+Current Work and Modifications Copyright (c) 2026-present Abdoul Sy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

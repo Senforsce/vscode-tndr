@@ -96,7 +96,7 @@ func testRelease(t *testing.T, moduleRoot, command, tagName string, extraArgs ..
 }
 
 func TestBuildVSCGO(t *testing.T) {
-	modulePath := "github.com/golang/vscode-go"
+	modulePath := "github.com/senforsce/vscode-tndr"
 	version := "v0.0.1"
 	proxyURI := createTestModuleProxy(t, modulePath, version)
 
@@ -173,8 +173,8 @@ func TestBuildVSCGO(t *testing.T) {
 				gotGOARCH = s.Value
 			}
 		}
-		if bi.Path != "github.com/golang/vscode-go/vscgo" ||
-			bi.Main.Path != "github.com/golang/vscode-go" ||
+		if bi.Path != "github.com/senforsce/vscode-tndr/vscgo" ||
+			bi.Main.Path != "github.com/senforsce/vscode-tndr" ||
 			bi.Main.Version != version ||
 			gotGOOS != goos ||
 			gotGOARCH != goarch {

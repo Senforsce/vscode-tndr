@@ -121,7 +121,7 @@ export async function setGOROOTEnvVar(configGOROOT: string) {
 	}
 
 	outputChannel.debug(
-		`setting GOROOT = ${goroot} (old value: ${currentGOROOT}) because "go.goroot": "${configGOROOT}"`
+		`setting GOROOT = ${goroot} (old value: ${currentGOROOT}) because "tndr.goroot": "${configGOROOT}"`
 	);
 	if (goroot) {
 		process.env['GOROOT'] = goroot;
