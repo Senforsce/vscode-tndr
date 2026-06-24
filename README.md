@@ -1,17 +1,15 @@
 # Go for Visual Studio Code
 
-[![Slack](https://img.shields.io/badge/slack-gophers-green.svg?style=flat)](https://gophers.slack.com/messages/vscode/)
-
 <!--TODO: We should add a badge for the build status or link to the build dashboard.-->
 
-[The VS Code Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go)
+[The VS Code Tndr extension](https://marketplace.visualstudio.com/items?itemName=tndr.t0)
 provides rich language support for the
-[Go programming language](https://go.dev/).
+[Tndr(t0) programming language (exacttly golalng with some directives)](https://go.dev/).
 
 ## Requirements
 
 * Visual Studio Code 1.90 or newer (or editors compatible with VS Code 1.90+ APIs)
-* Go 1.21 or newer.
+* Go 1.26 or newer.
 
 ## Quick Start
 
@@ -19,15 +17,19 @@ Welcome! 👋🏻<br/>
 Whether you are new to Go or an experienced Go developer, we hope this
 extension fits your needs and enhances your development experience.
 
-1.  Install [Go](https://go.dev) 1.21 or newer if you haven't already.
+1.  Install [Go](https://go.dev) 1.26 or newer if you haven't already.
 
-1.  Install the [VS Code Go extension].
+1.  Install Tndr [t0](https://github.com/Senforsce/t0) 1.26 or newer if you haven't already.
 
-1.  Open any Go file or go.mod file to automatically activate the extension. The
+1.  Install Tndr (for web development) [t1](https://github.com/Senforsce/t1) 1.26 or newer if you haven't already.
+
+1.  Install the [VS Code Tndr extension].
+
+1.  Open any t0, t1 file or go.mod file to automatically activate the extension. The
     [Go status bar](https://github.com/golang/vscode-go/wiki/ui) appears in the
     bottom right corner of the window and displays your Go version.
 
-1.  The extension depends on `go`, `gopls` (the Go language server), and optional
+1.  The extension depends on `go`, `gopls`, `tndr(t0)` (the Go language server), and optional
     tools depending on your settings. If `gopls` is missing, the extension will
     try to install it. The :zap: sign next to the Go version indicates
     the language server is running, and you are ready to go.
@@ -42,13 +44,13 @@ You are ready to Go :-) &nbsp;&nbsp; 🎉🎉🎉
 
 ## What's next
 
-* Explore more [features][full feature breakdown] of the VS Code Go extension.
+* Explore more [features][full feature breakdown] of the VS Code Tndr extension.
 * View the
   [settings documentation](https://github.com/golang/vscode-go/wiki/settings)
 	and [advanced topics](https://github.com/golang/vscode-go/wiki/advanced) to
 	customize the extension.
 * View the [tools documentation](https://github.com/golang/vscode-go/wiki/tools)
-  for a complete list of tools the VS Code Go extension depends on. You can
+  for a complete list of tools the VS Code Tndr extension depends on. You can
   install additional tools and update them by using "Go: Install/Update Tools".
 * Solve issues with the
   [general troubleshooting](https://github.com/golang/vscode-go/wiki/troubleshooting)
@@ -107,7 +109,7 @@ by turning on [Gopls' `ui.semanticTokens` setting](https://github.com/golang/vsc
 
 ## Setting up your workspace
 
-The VS Code Go extension supports both `GOPATH` and Go modules modes.
+The VS Code Tndr extension supports both `GOPATH` and Go modules modes.
 
 [Go modules](https://golang.org/ref/mod) are used to manage dependencies in
 recent versions of Go. Modules replace the `GOPATH`-based approach to specifying
@@ -125,23 +127,10 @@ modules or uncommon project layouts, you will need to configure your workspace
 by using [Workspace Folders]. See the
 [Supported workspace layouts documentation] for more information.
 
-## Pre-release version
-
-If you'd like to get early access to new features and bug fixes, you can use the
-pre-release extension. Following the vscode's [convention](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#prerelease-extensions),
-we use the minor version of the extension version number to distinguish stable
-and pre-release versions (`0.ODD_NUMBER.patch` for pre-release, `0.EVEN_NUMBER.patch`
-for stable release).
-
-To install the pre-release version, use the drop-down list
-to select "Install Pre-Release Version", or if already installed the Go extension,
-use the "Switch to Pre-Release Version" option in the Visual Studio Code
-extension management page. For more details about this mechanism, see the
-[Visual Studio Code's documentation](https://code.visualstudio.com/updates/v1_63#_pre-release-extensions).
 
 ## Telemetry
 
-VS Code Go extension relies on the [Go Telemetry](https://go.dev/doc/telemetry) to
+VS Code Tndr extension relies on the [Go Telemetry](https://go.dev/doc/telemetry) to
 learn insights about the performance and stability of the extension and the
 language server (`gopls`).
 **Go Telemetry data uploading is disabled by default** and can be enabled
@@ -184,12 +173,11 @@ Go telemetry is designed to be transparent and privacy-preserving. Learn more at
 
 ## Support Policy
 
-The Go extension is maintained by engineers on the
-[Go tools team](https://github.com/orgs/golang/teams/tools-team/members),
-who actively monitor the [VS Code Go](https://github.com/golang/vscode-go/issues)
-and the [Go](https://github.com/golang/go/issues?q=is%3Aissue+is%3Aopen+label%3Agopls)
-issue trackers.
-
+The T0 extension is maintained by myself, for free, it is a fork of vscode-go dating (06/2026)
+for the t0 language (for now a superset of golang -just adding internal directives)
+the generated code is golang, so you can safely use the vscode-go extension instead (setting .t0 files as golang)
+if you have issues unrelated to tndr and ontologies
+Maybe
 We support only the latest stable and pre-release versions of the extension.
 
 ### Supported Go and tools
@@ -208,18 +196,11 @@ the extension and tools.
 
 ## Contributing
 
-We welcome your contributions and thank you for working to improve the Go
-development experience in VS Code. If you would like to help work on the VS Code
-Go extension, see our
-[contribution guide](https://github.com/golang/vscode-go/wiki/contributing) to
-learn how to build and run the VS Code Go extension locally and contribute to
-the project.
+The project is too early to accept contributing
 
 ## Code of Conduct
 
-This project follows the
-[Go Community Code of Conduct](https://golang.org/conduct). If you encounter a
-conduct-related issue, please mail conduct@golang.org.
+There is none yet
 
 ## License
 
@@ -229,7 +210,7 @@ conduct-related issue, please mail conduct@golang.org.
 [`gopls`]: https://golang.org/s/gopls
 [`go`]: https://golang.org/cmd/go
 [Managing extensions in VS Code]: https://code.visualstudio.com/docs/editor/extension-gallery
-[VS Code Go extension]: https://marketplace.visualstudio.com/items?itemName=golang.go
+[VS Code Tndr extension]: https://marketplace.visualstudio.com/items?itemName=golang.go
 [Go installation guide]: https://golang.org/doc/install
 ["Getting started with VS Code Go"]: https://youtu.be/1MXIGYrMk80
 [IntelliSense]: https://github.com/golang/vscode-go/wiki/features#intellisense

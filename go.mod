@@ -1,6 +1,6 @@
-module github.com/golang/vscode-go
+module github.com/senforsce/vscode-tndr
 
-go 1.23.1
+go 1.26.2
 
 require golang.org/x/telemetry v0.0.0-20241004145657-5eebfecbdf1f
 

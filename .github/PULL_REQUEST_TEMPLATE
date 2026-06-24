@@ -4,7 +4,7 @@ the Gerrit change.
 
 **Please ensure you adhere to every item in this list.**
 
-More info can be found at https://github.com/golang/go/wiki/CommitMessage
+More info can be found at https://github.com/senforse/t0/wiki/CommitMessage
 
 + The PR title is formatted as follows: `frob the quux before blarfing`
   + The part after the colon uses the verb tense + phrase that completes the blank in,

@@ -7,7 +7,7 @@
 // the extension is first activated.
 package main
 
-import "github.com/golang/vscode-go/internal/vscgo"
+import "github.com/senforsce/vscode-tndr/internal/vscgo"
 
 func main() {
 	vscgo.Main()

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Forked
+
+Date: 2026-06-22
+
+This project has been forked to support v0 and specific semantic (ontologies) features and metaprogramming features
+for use by Tndr @Senforsce
+
 ## Unreleased
 
 ## v0.55.0 (prerelease)

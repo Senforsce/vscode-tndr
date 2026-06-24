@@ -2,4 +2,4 @@
 
 ## Reporting a Vulnerability
 
-See [golang.org/security](https://golang.org/security) to report a vulnerability.
+See [tndrf1sh.site/security](tndrf1sh.site/security) to report a vulnerability.
